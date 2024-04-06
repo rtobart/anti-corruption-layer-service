@@ -9,4 +9,9 @@ export class UserController {
         const serviceResponse = await userService.getUsers()
         res.send(serviceResponse)
     }
+    async validateUser(req, res) {
+        const user = req.body
+        const serviceResponse = await userService.validateUser(user)
+        res.send(serviceResponse)
+    }
 }

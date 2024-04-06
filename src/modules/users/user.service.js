@@ -8,4 +8,19 @@ export class UserService {
         const data = docs.docs.map(doc => doc.data());
         return data.map(user => { return {name: user.userName} })
     }
+    async validateUser(user) {
+        console.log('🚀 ~ UserService ~ validateUser ~ user:', user)
+        try {
+            const docs = await firestore
+                .collection('coleccion')
+                .where('personalMail', '==', user.email)
+                .where('passwordHash', '==', user.password)
+                .get();
+            const data = docs.docs.map(doc => doc.data());
+            if (data.length === 0) return false;
+            return true
+        } catch (error) {
+            return false;
+        }
+    }
 }
