@@ -9,7 +9,6 @@ export class UserService {
         return data.map(user => { return {name: user.userName} })
     }
     async validateUser(user) {
-        console.log('🚀 ~ UserService ~ validateUser ~ user:', user)
         try {
             const docs = await firestore
                 .collection('coleccion')
